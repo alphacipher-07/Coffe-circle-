@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Coffee Circle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<header id="site-header" class="solid">
+  <nav class="container">
+    <div class="logo"><span class="mark"></span>Coffee Circle</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="index.html#products">Products</a></li><li><a href="index.html#story">Story</a></li>
+      <li><a href="index.html#ingredients">Ingredients</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#newsletter">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="cart.html" class="cart-link"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h8.4a2 2 0 002-1.6L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="cart-badge">0</span></a>
+      <a href="index.html#products" class="btn btn-outline">Shop Now</a>
+    </div>
+    <div class="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<section id="product-detail">
+  <div class="container">
+    <div class="breadcrumb reveal" style="margin-bottom:40px;"><a href="index.html">Home</a> / <a href="index.html#products">Products</a> / <span id="crumb-name"></span></div>
+
+    <div id="pd-content"></div>
+
+    <div id="related-wrap" style="display:none;">
+      <div class="section-head reveal related-heading"><span class="eyebrow">You Might Also Like</span><h2>More from<br>the circle.</h2></div>
+      <div class="products-grid" id="related-grid" style="margin-top:50px;"></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="mark"></span>Coffee Circle</div><p>Premium cold brew, handcrafted since 2021. Every sip, a new journey.</p></div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="index.html">Home</a></li><li><a href="index.html#products">Products</a></li><li><a href="index.html#story">Story</a></li><li><a href="index.html#reviews">Reviews</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html#ingredients">Ingredients</a></li><li><a href="index.html#process">Our Process</a></li><li><a href="index.html#newsletter">Contact</a></li><li><a href="owner-dashboard.html">Owner Login</a></li></ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">X</a></li><li><a href="#">YouTube</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Coffee Circle. All rights reserved.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">X</a><a href="#">YT</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/shop.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug') || PRODUCTS[0].slug;
+const product = findProduct(slug) || PRODUCTS[0];
+let qty = 1;
+
+document.title = `${product.name} — Coffee Circle`;
+document.getElementById('crumb-name').textContent = product.name;
+
+const pdContent = document.getElementById('pd-content');
+pdContent.innerHTML = `
+  <div class="pd-grid">
+    <div class="pd-gallery reveal">
+      <div class="pd-main-img" id="pd-main-img">
+        <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; document.getElementById('pd-fallback').style.display='flex';">
+        <div id="pd-fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:var(--bg-soft);">
+          <svg viewBox="0 0 60 120" style="width:110px; height:220px;" fill="none">
+            <path d="M22 4h16v14l6 10v82a6 6 0 01-6 6H22a6 6 0 01-6-6V28l6-10V4z" stroke="#4E342E" stroke-width="1.6" fill="rgba(78,52,46,0.04)"/>
+            <rect x="16" y="60" width="28" height="46" fill="#4E342E" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="pd-info">
+      <span class="eyebrow reveal">Coffee Circle Original</span>
+      <h1 class="reveal">${product.name}</h1>
+      <div class="pd-price reveal">₹${product.price}</div>
+      <p class="pd-desc reveal">${product.longDesc}</p>
+      <div class="pd-qty reveal">
+        <div class="qty-control">
+          <button id="qty-minus" aria-label="Decrease quantity">−</button>
+          <span id="qty-val">1</span>
+          <button id="qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+        <span style="font-family:var(--mono); font-size:12.5px; color:var(--muted);">250ml bottle</span>
+      </div>
+      <div class="pd-actions reveal">
+        <button class="btn btn-brown" id="add-to-cart-btn">Add to Cart — ₹${product.price}</button>
+        <a href="cart.html" class="btn btn-outline">View Cart</a>
+      </div>
+      <div class="pd-meta reveal">
+        <div><svg viewBox="0 0 24 24"><path d="M3 12l2-7h14l2 7M5 12v7a1 1 0 001 1h12a1 1 0 001-1v-7M5 12h14"/></svg> Delivered chilled within 24 hours</div>
+        <div><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> No preservatives, 100% real ingredients</div>
+        <div><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z M4 9h16 M9 9v11"/></svg> 250ml glass bottle, fully recyclable</div>
+      </div>
+    </div>
+  </div>
+`;
+
+document.getElementById('qty-minus').addEventListener('click', ()=>{ qty = Math.max(1, qty-1); updateQtyUI(); });
+document.getElementById('qty-plus').addEventListener('click', ()=>{ qty = Math.min(20, qty+1); updateQtyUI(); });
+function updateQtyUI(){
+  document.getElementById('qty-val').textContent = qty;
+  document.getElementById('add-to-cart-btn').textContent = `Add to Cart — ₹${product.price * qty}`;
+}
+document.getElementById('add-to-cart-btn').addEventListener('click', ()=>{
+  addToCart(product.slug, qty);
+  showToast(`Added ${qty} × ${product.name} to cart`);
+});
+
+const related = PRODUCTS.filter(p => p.slug !== product.slug).slice(0, 3);
+if(related.length){
+  document.getElementById('related-wrap').style.display = 'block';
+  const grid = document.getElementById('related-grid');
+  related.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'product-card reveal';
+    card.innerHTML = `
+      <a class="product-link" href="product.html?slug=${p.slug}" aria-label="${p.name}"></a>
+      <div class="product-thumb">
+        <img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">
+      </div>
+      <h3>${p.name}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="product-foot"><span class="price">₹${p.price}</span><button class="add-cart" data-slug="${p.slug}">Add to Cart</button></div>
+    `;
+    grid.appendChild(card);
+  });
+  grid.addEventListener('click', e=>{
+    const btn = e.target.closest('.add-cart');
+    if(!btn) return;
+    e.preventDefault();
+    addToCart(btn.dataset.slug, 1);
+    showToast('Added to cart');
+  });
+}
+
+window.addEventListener('load', ()=>{
+  if(typeof gsap !== 'undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach((el,i)=>gsap.to(el,{ opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 92%' }, delay:(i%4)*0.06 }));
+    initLineReveal('.section-head h2');
+    initCardTilt('.product-card');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Circle — Cold Brew Perfected</title>
+<meta name="description" content="Coffee Circle. Premium cold brew, handcrafted since 2021.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<header id="site-header">
+  <nav class="container">
+    <div class="logo"><span class="mark"></span>Coffee Circle</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="index.html#products">Products</a></li><li><a href="index.html#story">Story</a></li>
+      <li><a href="index.html#ingredients">Ingredients</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#newsletter">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="cart.html" class="cart-link"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h8.4a2 2 0 002-1.6L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="cart-badge">0</span></a>
+      <a href="index.html#products" class="btn btn-outline">Shop Now</a>
+    </div>
+    <div class="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<section id="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Small Batch — Cold Brewed</span>
+      <h1 class="headline">
+        <span class="line"><span class="thin">COLD BREW</span></span>
+        <span class="line"><span class="bold">PERFECTED.</span></span>
+      </h1>
+      <p class="hero-sub">Smooth. Creamy. Refreshing. Delivered to your door.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-brown">Shop Now →</a>
+        <a href="#story" class="btn btn-outline">Explore Menu →</a>
+      </div>
+      <div class="hero-features">
+        <div class="feature-row"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C7 2 4 7 4 12c0 5 3 10 8 10s8-5 8-10c0-5-3-10-8-10z M12 3v18"/></svg></div><div class="feature-text"><b>Premium Beans</b><span>Sourced from the best coffee farms.</span></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20 M4.5 6.5l15 11 M19.5 6.5l-15 11 M2 12h20"/></svg></div><div class="feature-text"><b>Cold Brewed</b><span>Brewed slow for 48 hours.</span></div></div>
+        <div class="feature-row"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 2h6l1 4H8l1-4z M8 6h8l1 14a2 2 0 01-2 2H9a2 2 0 01-2-2L8 6z"/></svg></div><div class="feature-text"><b>Fresh &amp; Pure</b><span>No preservatives. 100% real.</span></div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="video-frame"><video id="hero-pour-video" muted playsinline preload="auto" src="hero-pour.mp4"></video></div>
+      <div class="delivery-badge">
+        <svg viewBox="0 0 160 160">
+          <defs><path id="arcTop" d="M 20,80 a 60,60 0 1,1 120,0" /><path id="arcBottom" d="M 140,80 a 60,60 0 1,1 -120,0" /></defs>
+          <circle class="badge-ring" cx="80" cy="80" r="60"/>
+          <text class="badge-txt"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">DOORSTEP DELIVERY</textPath></text>
+          <text class="badge-txt"><textPath href="#arcBottom" startOffset="50%" text-anchor="middle">FAST &amp; FRESH</textPath></text>
+          <path class="badge-truck" d="M62 84h20v-14h10l6 8v6h-4 M62 84a5 5 0 0010 0 M92 84a5 5 0 0010 0" transform="translate(0,-4)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">The Collection</span><h2>Six pours.<br>One circle.</h2><p>Each bottle is cold-brewed for eighteen hours and finished by hand. No two batches taste quite the same.</p></div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="container story-grid">
+    <div class="story-visual reveal">
+      <img src="images/building.jpg" alt="Coffee Circle building" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="bldg" style="display:none;"><svg viewBox="0 0 220 260" fill="none">
+        <rect x="30" y="40" width="160" height="210" fill="#fff" stroke="#4E342E" stroke-width="1"/>
+        <rect x="45" y="60" width="26" height="34" fill="#4E342E" opacity="0.14"/><rect x="97" y="60" width="26" height="34" fill="#4E342E" opacity="0.3"/><rect x="149" y="60" width="26" height="34" fill="#4E342E" opacity="0.14"/>
+        <rect x="45" y="110" width="26" height="34" fill="#4E342E" opacity="0.2"/><rect x="97" y="110" width="26" height="34" fill="#4E342E" opacity="0.14"/><rect x="149" y="110" width="26" height="34" fill="#4E342E" opacity="0.3"/>
+        <rect x="45" y="160" width="26" height="34" fill="#4E342E" opacity="0.14"/><rect x="97" y="160" width="26" height="34" fill="#4E342E" opacity="0.2"/><rect x="149" y="160" width="26" height="34" fill="#4E342E" opacity="0.14"/>
+        <rect x="90" y="210" width="40" height="40" fill="#fff" stroke="#4E342E" stroke-width="1"/>
+      </svg></div>
+      <div class="frame"></div>
+    </div>
+    <div class="story-copy">
+      <span class="eyebrow reveal">Our Story</span>
+      <h2 class="reveal" style="font-family:var(--display); font-weight:800; font-size:clamp(28px,3.6vw,42px); color:var(--ink); margin-top:14px;">Founded on patience,<br>built for the circle.</h2>
+      <p class="reveal">Coffee Circle began in 2021 with a single roastery and a stubborn belief: that cold brew deserved the same craft as fine wine. No shortcuts, no concentrate — just beans, time, and cold water.</p>
+      <p class="reveal">Every batch is steeped for eighteen hours, filtered twice, and bottled the same morning it ships. Fresh ingredients, sourced weekly. Delivered within a day.</p>
+      <div class="story-stats reveal"><div><b>2021</b><span>Founded</span></div><div><b>18h</b><span>Cold Steep</span></div><div><b>24h</b><span>Delivery</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ingredients">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">What's Inside</span><h2>Six ingredients.<br>No compromises.</h2></div>
+    <div class="ingredients-row" id="ingredients-row"></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">The Craft</span><h2>From bean<br>to bottle.</h2></div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container"><div class="section-head reveal"><span class="eyebrow">Reviews</span><h2>Loved, one<br>bottle at a time.</h2></div></div>
+  <div class="reviews-track" id="reviews-track"></div>
+</section>
+
+<section id="newsletter">
+  <div class="container">
+    <span class="eyebrow reveal">Join Us</span>
+    <h2 class="reveal">Join <em>The Coffee Circle</em></h2>
+    <p class="reveal">First access to new roasts, limited pours, and members-only pricing.</p>
+    <form class="subscribe-form reveal" id="subscribe-form"><input type="email" placeholder="Your email address" required><button type="submit">Subscribe →</button></form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="mark"></span>Coffee Circle</div><p>Premium cold brew, handcrafted since 2021. Every sip, a new journey.</p></div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="index.html">Home</a></li><li><a href="index.html#products">Products</a></li><li><a href="index.html#story">Story</a></li><li><a href="index.html#reviews">Reviews</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html#ingredients">Ingredients</a></li><li><a href="index.html#process">Our Process</a></li><li><a href="index.html#newsletter">Contact</a></li><li><a href="owner-dashboard.html">Owner Login</a></li></ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">X</a></li><li><a href="#">YouTube</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Coffee Circle. All rights reserved.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">X</a><a href="#">YT</a></div></div>
+  </div>
+</footer>
+
+<script src="assets/shop.js"></script>
+<script>
+const INGREDIENTS = [
+  { name:'Coffee Beans',      image:'images/coffee-beans.jpg',      icon:'M12 2C7 2 4 7 4 12c0 5 3 10 8 10s8-5 8-10c0-5-3-10-8-10z M12 3v18' },
+  { name:'Fresh Milk',        image:'images/fresh-milk.jpg',        icon:'M9 2h6l1 4H8l1-4z M8 6h8l1 14a2 2 0 01-2 2H9a2 2 0 01-2-2L8 6z' },
+  { name:'Belgian Chocolate', image:'images/belgian-chocolate.jpg', icon:'M3 8h18v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8z M3 8l2-4h14l2 4' },
+  { name:'Vanilla',           image:'images/vanilla.jpg',           icon:'M12 2v20 M8 6c0 4 4 4 4 8s-4 4-4 8 M16 6c0 4-4 4-4 8s4 4 4 8' },
+  { name:'Caramel',           image:'images/caramel.jpg',           icon:'M4 12a8 8 0 1116 0 8 8 0 01-16 0z M12 8v4l3 3' },
+  { name:'Ice',               image:'images/ice.jpg',               icon:'M12 2v20 M4.5 6.5l15 11 M19.5 6.5l-15 11 M2 12h20' },
+];
+const PROCESS_STEPS = [
+  { title:'Roasting', note:'Slow, small batch' }, { title:'Grinding', note:'Coarse, even grind' },
+  { title:'Cold Brewing', note:'18 hour steep' }, { title:'Filtering', note:'Double filtered' },
+  { title:'Bottling', note:'Hand sealed glass' }, { title:'Delivery', note:'Chilled, within 24h' },
+];
+const REVIEWS = [
+  { name:'Ananya R.', role:'Verified Buyer', text:'The Mocha Blast tastes like it took eighteen hours — because it did. Nothing else compares.' },
+  { name:'Karan S.',  role:'Verified Buyer', text:'Cold Brew Perfected is not a slogan, it is accurate. The Classic is now a daily ritual.' },
+  { name:'Meera D.',  role:'Verified Buyer', text:'Caramel Cream is dangerously good. The bottle alone feels like a gift.' },
+  { name:'Rohit V.',  role:'Verified Buyer', text:'Ordered on a whim, reordered within a week. The Hazelnut Brew is unreal.' },
+  { name:'Sana K.',   role:'Verified Buyer', text:'Every bottle arrives ice cold and perfectly on time. Coffee Circle gets the details right.' },
+];
+
+const productsGrid = document.getElementById('products-grid');
+PRODUCTS.forEach((p)=>{
+  const card = document.createElement('div');
+  card.className = 'product-card reveal';
+  card.innerHTML = `
+    <a class="product-link" href="product.html?slug=${p.slug}" aria-label="${p.name}"></a>
+    <div class="product-thumb">
+      <img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">
+    </div>
+    <h3>${p.name}</h3>
+    <p class="desc">${p.desc}</p>
+    <div class="product-foot"><span class="price">₹${p.price}</span><button class="add-cart" data-slug="${p.slug}">Add to Cart</button></div>
+  `;
+  productsGrid.appendChild(card);
+});
+productsGrid.addEventListener('click', e=>{
+  const btn = e.target.closest('.add-cart');
+  if(!btn) return;
+  e.preventDefault();
+  addToCart(btn.dataset.slug, 1);
+  showToast('Added to cart');
+});
+
+const ingRow = document.getElementById('ingredients-row');
+INGREDIENTS.forEach(i=>{
+  const card = document.createElement('div');
+  card.className = 'ing-card';
+  card.innerHTML = `<div class="ing-thumb"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="${i.icon}"/></svg></div><img src="${i.image}" alt="${i.name}" onerror="this.style.display='none'"></div><span>${i.name}</span>`;
+  ingRow.appendChild(card);
+});
+
+const timeline = document.getElementById('timeline');
+PROCESS_STEPS.forEach(s=>{
+  const step = document.createElement('div');
+  step.className = 'tl-step';
+  step.innerHTML = `<div class="tl-dot"></div><h4>${s.title}</h4><small>${s.note}</small>`;
+  timeline.appendChild(step);
+});
+
+const reviewsTrack = document.getElementById('reviews-track');
+function buildReviewCard(r){
+  const initials = r.name.split(' ').map(w=>w[0]).join('');
+  return `<div class="review-card"><div class="stars">★★★★★</div><p>"${r.text}"</p><div class="review-meta"><div class="review-avatar">${initials}</div><div><b>${r.name}</b><span>${r.role}</span></div></div></div>`;
+}
+reviewsTrack.innerHTML = REVIEWS.map(buildReviewCard).join('') + REVIEWS.map(buildReviewCard).join('');
+
+window.addEventListener('load', ()=>{
+  if(typeof gsap !== 'undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.ing-card').forEach((el,i)=>gsap.to(el,{ opacity:1, y:0, duration:0.9, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 90%' }, delay:i*0.08 }));
+    gsap.utils.toArray('.tl-step').forEach((el,i)=>gsap.to(el,{ opacity:1, y:0, duration:0.8, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 92%' }, onEnter:()=>el.classList.add('lit'), delay:i*0.05 }));
+    gsap.utils.toArray('#products-grid .product-card').forEach((el,i)=>gsap.to(el,{ opacity:1, y:0, duration:0.8, ease:'power2.out', scrollTrigger:{ trigger:el, start:'top 90%' }, delay:(i%3)*0.06 }));
+
+    const trackWidth = reviewsTrack.scrollWidth / 2;
+    gsap.to(reviewsTrack, { x:-trackWidth, duration:34, ease:'none', repeat:-1 });
+
+    /* new animation pass: line reveals, image curtains, counters, card tilt, horizontal rail */
+    initLineReveal('.section-head h2');
+    initCurtainReveal('.product-thumb, .story-visual, .ing-thumb');
+    initCounters('.story-stats div b');
+    initCardTilt('.product-card, .review-card');
+
+    const tl = gsap.timeline({ defaults:{ ease:'power4.out' }, delay:0.2 });
+    tl.to('.hero-copy .eyebrow', { opacity:1, duration:0.6 })
+      .to('h1.headline .line span', { y:'0%', duration:1.1, stagger:0.12 }, '-=0.3')
+      .to('.hero-sub', { opacity:1, duration:0.8 }, '-=0.5')
+      .to('.hero-actions', { opacity:1, duration:0.8 }, '-=0.6')
+      .to('.hero-features', { opacity:1, duration:0.8 }, '-=0.5');
+
+    const video = document.getElementById('hero-pour-video');
+    const frame = document.querySelector('.video-frame');
+    video.pause();
+    function bindScrub(){
+      ScrollTrigger.create({
+        trigger:'#hero', start:'top top', end:'bottom top', scrub:0.4,
+        onUpdate:self=>{
+          const dur = video.duration || 4.9;
+          video.currentTime = Math.min(self.progress * dur, dur - 0.03);
+          gsap.set(frame, { rotate: self.progress * 6 - 1, transformOrigin:'70% 20%' });
+        }
+      });
+    }
+    if(video.readyState >= 1){ bindScrub(); } else { video.addEventListener('loadedmetadata', bindScrub, { once:true }); }
+  }
+});
+
+document.getElementById('subscribe-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  const btn = e.target.querySelector('button'); const original = btn.textContent;
+  btn.textContent = 'Subscribed ✓'; e.target.querySelector('input').value='';
+  setTimeout(()=>{ btn.textContent = original; }, 2400);
+});
+</script>
+</body>
+</html>
